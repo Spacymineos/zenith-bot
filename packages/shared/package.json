@@ -3,16 +3,46 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".":           "./src/index.ts",
-    "./types":     "./src/types/index.ts",
-    "./constants": "./src/constants/index.ts",
-    "./env":       "./src/env/index.ts",
-    "./logic":     "./src/logic/index.ts",
-    "./chain":     "./src/chain/index.ts",
-    "./errors":    "./src/errors/index.ts",
-    "./format":    "./src/format/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.js"
+    },
+    "./constants": {
+      "types": "./dist/constants/index.d.ts",
+      "import": "./dist/constants/index.js"
+    },
+    "./env": {
+      "types": "./dist/env/index.d.ts",
+      "import": "./dist/env/index.js"
+    },
+    "./logic": {
+      "types": "./dist/logic/index.d.ts",
+      "import": "./dist/logic/index.js"
+    },
+    "./chain": {
+      "types": "./dist/chain/index.d.ts",
+      "import": "./dist/chain/index.js"
+    },
+    "./errors": {
+      "types": "./dist/errors/index.d.ts",
+      "import": "./dist/errors/index.js"
+    },
+    "./format": {
+      "types": "./dist/format/index.d.ts",
+      "import": "./dist/format/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "test": "vitest run"
   },
   "dependencies": {
     "ethers": "^6.16.0",

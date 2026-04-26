@@ -14,14 +14,17 @@
     "@chainbot/config": "workspace:*",
     "@chainbot/shared": "workspace:*",
     "discord.js": "^14.26.3",
+    "dotenv": "^17.4.2",
     "ethers": "^6.16.0",
     "pg": "^8.20.0",
-    "tsx": "^4.21.0"
+    "tsx": "^4.21.0",
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
     "@types/node-cron": "^3.0.11",
     "@types/pg": "^8.20.0",
+    "@types/uuid": "^11.0.0",
     "@vitest/coverage-v8": "^4.1.5",
     "@vitest/ui": "4.1.5",
     "typescript": "^6.0.3",

@@ -7,5 +7,7 @@ export * from "./logic/token";
 export * from "./logic/gamble";
 export * from "./chain/provider";
 export * from "./chain/contracts";
+export * from "./chain/crypto";
+export * from "./chain/utils";
 export * from "./errors/index";
 export * from "./format/index";

@@ -1,5 +1,5 @@
 import { EXPLORER_URL } from "../constants/index";
-import { Contract, Provider, Signer } from "ethers";
+import { Contract, Provider, Signer, formatUnits, parseUnits } from "ethers";
 import { getProvider } from "./provider";
 import { CONTRACT_ADDRESSES, ABIS } from "@chainbot/config";
 
@@ -34,7 +34,6 @@ export function explorerToken(addr: string): string {
 }
 
 export function parseCoin(amount: number | string, decimals: number = 18): bigint {
-  const { parseUnits } = require("ethers");
   return parseUnits(String(amount), decimals);
 }
 
@@ -59,6 +58,5 @@ export function uniswapPair(address: string, signerOrProvider?: Signer | Provide
 
 // Legacy name support (maps to formatCOIN from logic/token.ts)
 export function formatCoin(bigint: bigint, decimals: number = 18, places: number = 4): string {
-  const { formatUnits } = require("ethers");
   return parseFloat(formatUnits(bigint, decimals)).toFixed(places);
 }

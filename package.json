@@ -14,7 +14,7 @@
     "dev:docs": "pnpm --filter docs dev",
     "dev:all": "pnpm node & pnpm dev",
     "node": "pnpm --filter contracts exec hardhat node",
-    "build": "pnpm --filter web build && pnpm --filter docs build",
+    "build": "pnpm --filter @chainbot/config build && pnpm --filter @chainbot/shared build && pnpm --filter web build && pnpm --filter docs build",
     "test": "vitest run --workspace vitest.workspace.ts --reporter=verbose",
     "test:watch": "vitest --workspace vitest.workspace.ts",
     "test:ui": "vitest --workspace vitest.workspace.ts --ui",

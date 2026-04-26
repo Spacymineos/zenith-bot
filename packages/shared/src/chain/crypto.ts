@@ -25,18 +25,21 @@ export function decryptPrivateKey(stored: string): string {
   return decipher.update(encrypted) + decipher.final("utf8");
 }
 
+import { Wallet, Provider } from "ethers";
+import { getProvider } from "./provider";
+
 export interface WalletRow {
   is_custodial?: boolean;
-  encrypted_key?: string;
+  encrypted_key?: string | null;
+  address: string;
 }
 
-export function signerFromWalletRow(row: WalletRow, signer: any) {
+export function signerFromWalletRow(row: WalletRow, provider?: Provider) {
   if (!row.is_custodial || !row.encrypted_key) {
     throw new Error("This is a view-only wallet; cannot sign transactions.");
   }
   const pk = decryptPrivateKey(row.encrypted_key);
-  const { Wallet } = require("ethers");
-  return new Wallet(pk, signer);
+  return new Wallet(pk, provider ?? getProvider());
 }
 
 export const DEAD_ADDRESS = "0x000000000000000000000000000000000000dEaD";

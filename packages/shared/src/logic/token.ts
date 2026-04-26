@@ -10,6 +10,16 @@ export function formatCOIN(wei: bigint, decimals: number = 2): string {
   return `${wholePart}.${fractionalPart.padEnd(decimals, "0")}`;
 }
 
+export function parseCOIN(amount: string, decimals: number = 18): bigint {
+  try {
+    const [whole, fraction = ""] = amount.split(".");
+    const paddedFraction = fraction.padEnd(decimals, "0").slice(0, decimals);
+    return BigInt(whole + paddedFraction);
+  } catch {
+    return 0n;
+  }
+}
+
 export function formatUSD(amount: number): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",

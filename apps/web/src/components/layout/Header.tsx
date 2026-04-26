@@ -65,8 +65,6 @@ export default function Header() {
   }
 
   const navLinks = [
-    { href: '/explorer', label: 'Explorer' },
-    { href: '/dashboard', label: 'Dashboard' },
     { href: 'https://chainbot.animeos.dev/docs', label: 'Docs' },
   ]
 

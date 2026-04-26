@@ -3,11 +3,8 @@
   "compilerOptions": {
     "lib": ["ES2022"],
     "outDir": "./dist",
-    "paths": {
-      "@chainbot/shared":   ["../../packages/shared/src/index.ts"],
-      "@chainbot/config":   ["../../packages/config/index.ts"]
-    }
+    "paths": {}
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts", "src/commands/pay.js"],
   "exclude": ["node_modules", "dist"]
 }
