@@ -64,7 +64,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     const recipientRow = await getWallet(mentionMatch[1]);
     if (!recipientRow) {
       return interaction.editReply({
-        embeds: [error('That user does not have a ChainBot wallet yet.')],
+        embeds: [error('That user does not have a Zenith wallet yet.')],
       });
     }
     toAddress = recipientRow.address;

@@ -33,6 +33,17 @@ CREATE TABLE IF NOT EXISTS token_registry (
     created_at  TIMESTAMPTZ DEFAULT NOW()
 );
 
+CREATE TABLE IF NOT EXISTS payment_links (
+    id              TEXT PRIMARY KEY,
+    creator_id      TEXT NOT NULL,
+    amount          NUMERIC NOT NULL,
+    token_symbol    TEXT NOT NULL,
+    token_address   TEXT,
+    reason          TEXT,
+    created_at      TIMESTAMPTZ DEFAULT NOW()
+);
+
 CREATE INDEX IF NOT EXISTS cooldowns_discord_id_idx ON cooldowns(discord_id);
 CREATE INDEX IF NOT EXISTS job_history_discord_id_idx ON job_history(discord_id);
 CREATE INDEX IF NOT EXISTS wallets_address_idx ON wallets(address);
+CREATE INDEX IF NOT EXISTS payment_links_creator_idx ON payment_links(creator_id);

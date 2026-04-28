@@ -4,9 +4,9 @@ import { BRAND_COLOR, BRAND_FOOTER, HASH_EMOJI } from '../lib/discord.js';
 
 // Update these URLs when MinerCLI builds are available
 const DOWNLOAD_LINKS = {
-  windows: 'https://chainbot.animeos.dev/downloads/minercli-windows-amd64.zip',
-  mac:     'https://chainbot.animeos.dev/downloads/minercli-darwin-amd64.tar.gz',
-  linux:   'https://chainbot.animeos.dev/downloads/minercli-linux-amd64.tar.gz',
+  windows: 'https://zenith.animeos.dev/downloads/minercli-windows-amd64.zip',
+  mac:     'https://zenith.animeos.dev/downloads/minercli-darwin-amd64.tar.gz',
+  linux:   'https://zenith.animeos.dev/downloads/minercli-linux-amd64.tar.gz',
 };
 
 export const data = new SlashCommandBuilder()
@@ -35,9 +35,9 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLOR)
-    .setTitle(`${HASH_EMOJI} ChainBot MinerCLI`)
+    .setTitle(`${HASH_EMOJI} Zenith MinerCLI`)
     .setDescription(
-      'Mine COIN on the ChainBot network. Download the CLI for your OS and start earning block rewards!'
+      'Mine COIN on the Zenith network. Download the CLI for your OS and start earning block rewards!'
     )
     .addFields(
       {
@@ -71,7 +71,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
           '```bash',
           '# Linux/Mac',
           'chmod +x minercli && ./minercli mine \\',
-          '  --rpc https://chainbot.animeos.dev/rpc \\',
+          '  --rpc https://zenith.animeos.dev/rpc \\',
           '  --wallet YOUR_ADDRESS',
           '```',
         ].join('\n'),

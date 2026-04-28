@@ -8,13 +8,12 @@
     "pnpm": ">=10.33.2"
   },
   "scripts": {
-    "dev": "pnpm --filter bot dev & pnpm --filter web dev & pnpm --filter docs dev",
+    "dev": "pnpm --parallel dev",
+    "start:all": "pnpm build && pnpm --filter bot start",
     "dev:bot": "pnpm --filter bot dev",
-    "dev:web": "pnpm --filter web dev",
-    "dev:docs": "pnpm --filter docs dev",
     "dev:all": "pnpm node & pnpm dev",
     "node": "pnpm --filter contracts exec hardhat node",
-    "build": "pnpm --filter @chainbot/config build && pnpm --filter @chainbot/shared build && pnpm --filter web build && pnpm --filter docs build",
+    "build": "pnpm --filter @chainbot/config build && pnpm --filter @chainbot/shared build",
     "test": "vitest run --workspace vitest.workspace.ts --reporter=verbose",
     "test:watch": "vitest --workspace vitest.workspace.ts",
     "test:ui": "vitest --workspace vitest.workspace.ts --ui",
@@ -34,12 +33,13 @@
     "setup:local": "pnpm setup && echo 'Please run pnpm node in another terminal, then pnpm contracts:deploy:local'"
   },
   "devDependencies": {
-    "vitest": "^4.1.5",
-    "@vitest/ui": "^4.1.5",
-    "@vitest/coverage-v8": "^4.1.5",
-    "typescript": "^6.0.3",
-    "eslint": "^10.2.1",
     "@typescript-eslint/eslint-plugin": "^8.59.0",
-    "@typescript-eslint/parser": "^8.59.0"
+    "@typescript-eslint/parser": "^8.59.0",
+    "@vitest/coverage-v8": "^4.1.5",
+    "@vitest/ui": "^4.1.5",
+    "concurrently": "^9.2.1",
+    "eslint": "^10.2.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
   }
 }

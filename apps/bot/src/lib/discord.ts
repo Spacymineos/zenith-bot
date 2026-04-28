@@ -1,7 +1,7 @@
 import { EmbedBuilder } from "discord.js";
 
 export const BRAND_COLOR = 0x7f77dd;
-export const BRAND_FOOTER = "ChainBot • chainbot.animeos.dev";
+export const BRAND_FOOTER = "Zenith • zenith.animeos.dev";
 export const COIN_EMOJI = "🪙";
 export const CHECK_EMOJI = "✅";
 export const WARN_EMOJI = "⚠️";

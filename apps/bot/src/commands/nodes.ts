@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder, ChatInputCommandInteraction } from 'discord.js';
 import { BRAND_COLOR, BRAND_FOOTER } from '../lib/discord.js';
 import { getProvider } from '@chainbot/shared';
 
@@ -6,7 +6,7 @@ export const data = new SlashCommandBuilder()
   .setName('nodes')
   .setDescription('View live protocol infrastructure and node status');
 
-export async function execute(interaction: any) {
+export async function execute(interaction: ChatInputCommandInteraction) {
   await interaction.deferReply();
 
   let latency = 'N/A';
@@ -34,7 +34,7 @@ export async function execute(interaction: any) {
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLOR)
     .setTitle('🌐 Network Infrastructure Status')
-    .setDescription('Real-time telemetry from the ChainBot sovereign protocol.')
+    .setDescription('Real-time telemetry from the Zenith sovereign protocol.')
     .addFields(
       {
         name: '📊 Network Health',

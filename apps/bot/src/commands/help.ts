@@ -60,14 +60,14 @@ const SECTIONS = [
 
 export const data = new SlashCommandBuilder()
   .setName('help')
-  .setDescription('Show all available ChainBot commands');
+  .setDescription('Show all available Zenith commands');
 
 export async function execute(interaction: ChatInputCommandInteraction) {
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLOR)
-    .setTitle('📖 ChainBot — Command Reference')
+    .setTitle('📖 Zenith — Command Reference')
     .setDescription(
-      '**Chain ID:** `13371`  •  **Token:** `COIN`  •  **RPC:** `chainbot.animeos.dev/rpc`\n\n' +
+      '**Chain ID:** `13371`  •  **Token:** `COIN`  •  **RPC:** `zenith.animeos.dev/rpc`\\n\\n' +
       'Start with `/wallet create` to get your free custodial wallet!'
     )
     .addFields(SECTIONS)

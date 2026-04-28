@@ -19,8 +19,8 @@ export const ORACLE_KEYS: Record<typeof STABLECOINS[number], string> = {
   sBTC: "0x7342544300000000000000000000000000000000000000000000000000000000"
 };
 
-export const EXPLORER_URL = "https://chainbot.animeos.dev/explorer";
+export const EXPLORER_URL = process.env.EXPLORER_URL ?? "http://localhost:3000/explorer";
 export const RPC_HTTP_URL = process.env.RPC_URL ?? process.env.NEXT_PUBLIC_RPC_URL ?? "http://geth:8545";
 export const DISCORD_EMBED_COLOR = 0x7F77DD;
-export const BRAND_NAME = "ChainBot";
-export const BRAND_URL = "https://chainbot.animeos.dev";
+export const BRAND_NAME = "Zenith";
+export const BRAND_URL = "https://zenith.animeos.dev";

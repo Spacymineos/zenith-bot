@@ -51,7 +51,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         [id, interaction.user.id, amount, tokenSymbol, tokenAddress, reason]
       );
 
-      const explorerBase = process.env.EXPLORER_URL ?? 'https://chainbot.animeos.dev/explorer';
+      const explorerBase = process.env.EXPLORER_URL ?? 'http://localhost:3000/explorer';
       const checkoutUrl = `${explorerBase.replace('/explorer', '')}/pay/${id}`;
 
       const embed = new EmbedBuilder()
@@ -62,7 +62,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
           { name: '💰 Total', value: `**${amount} ${tokenSymbol}**`, inline: true },
           { name: '🆔 ID', value: id, inline: true },
         )
-        .setFooter({ text: 'Pay securely via ChainBot Checkout' });
+        .setFooter({ text: 'Pay securely via Zenith Checkout' });
 
       const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
         new ButtonBuilder()

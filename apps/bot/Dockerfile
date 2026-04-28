@@ -15,5 +15,7 @@ COPY packages/config ./packages/config
 COPY packages/contracts/deployments.json ./packages/contracts/deployments.json
 COPY packages/contracts/abis ./packages/contracts/abis
 
+RUN pnpm --filter @chainbot/config build && pnpm --filter @chainbot/shared build
+
 WORKDIR /app/apps/bot
 CMD ["node_modules/.bin/tsx", "src/index.ts"]

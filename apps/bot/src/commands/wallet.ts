@@ -6,7 +6,7 @@ import { success, error, warning, BRAND_FOOTER } from '../lib/discord.js';
 
 export const data = new SlashCommandBuilder()
   .setName('wallet')
-  .setDescription('Manage your ChainBot wallet')
+  .setDescription('Manage your Zenith wallet')
   .addSubcommand(sub =>
     sub.setName('create')
        .setDescription('Generate a new custodial wallet linked to your Discord account')
@@ -47,7 +47,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     try {
       const dmEmbed = new EmbedBuilder()
         .setColor(0xED4245)
-        .setTitle('🔐 Your New ChainBot Wallet — KEEP THIS PRIVATE')
+        .setTitle('🔐 Your New Zenith Wallet — KEEP THIS PRIVATE')
         .addFields(
           { name: '📬 Address (safe to share)', value: `\`${wallet.address}\`` },
           { name: '🔑 Private Key (NEVER share this!)', value: `\`\`\`${wallet.privateKey}\`\`\`` },
@@ -55,7 +55,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
             name: '⚠️ Security Warning',
             value: [
               '**Never share your private key with anyone.**',
-              'ChainBot staff will NEVER ask for it.',
+              'Zenith staff will NEVER ask for it.',
               'Store it in a secure password manager.',
               'This message will not be sent again.',
             ].join('\n'),
@@ -78,7 +78,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     return interaction.editReply({
       embeds: [success('Wallet Created!',
         '✉️ Check your DMs for your wallet address and private key.\n\n' +
-        '> **Never share your private key with anyone — not even ChainBot staff.**'
+        '> **Never share your private key with anyone — not even Zenith staff.**'
       )],
     });
   }

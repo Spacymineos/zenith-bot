@@ -57,32 +57,6 @@ services:
       - DATABASE_URL=postgres://chainbot:${DB_PASSWORD}@postgres:5432/chainbot
       - TREASURY_PRIVATE_KEY=${TREASURY_PRIVATE_KEY}
 
-  nextjs-web:
-    build:
-      context: .
-      dockerfile: apps/web/Dockerfile
-    container_name: nextjs-web
-    restart: unless-stopped
-    depends_on:
-      - geth
-      - postgres
-    ports:
-      - "3000:3000"
-    environment:
-      - NEXT_PUBLIC_RPC_URL=https://chainbot.animeos.dev/rpc
-      - DATABASE_URL=postgres://chainbot:${DB_PASSWORD}@postgres:5432/chainbot
-
-  docs:
-    build:
-      context: .
-      dockerfile: apps/docs/Dockerfile
-    container_name: chainbot-docs
-    restart: unless-stopped
-    ports:
-      - "3001:3001"
-    environment:
-      - NODE_ENV=production
-
   nginx:
     image: nginx:alpine
     container_name: nginx-proxy
@@ -95,8 +69,6 @@ services:
       - ./packages/nginx/certs:/etc/nginx/certs
     depends_on:
       - geth
-      - nextjs-web
-      - docs
 
   cloudflared:
     image: cloudflare/cloudflared:latest

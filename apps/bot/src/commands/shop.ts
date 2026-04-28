@@ -33,7 +33,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
           embeds: [
             new EmbedBuilder()
               .setColor(BRAND_COLOR)
-              .setTitle('🛒 ChainBot Shop')
+              .setTitle('🛒 Zenith Shop')
               .setDescription('The shop is empty right now. Check back later!')
               .setFooter({ text: BRAND_FOOTER })
               .setTimestamp(),
@@ -50,7 +50,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
       const embed = new EmbedBuilder()
         .setColor(BRAND_COLOR)
-        .setTitle('🛒 ChainBot NFT Shop')
+        .setTitle('🛒 Zenith NFT Shop')
         .setDescription(
           lines.join('\n\n') + '\n\n> To buy, run `/shop buy:<item_id>`'
         )
