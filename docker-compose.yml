@@ -11,51 +11,62 @@ services:
       - --http.addr=0.0.0.0
       - --http.port=8545
       - --http.corsdomain=*
-      - --http.api=eth,net,web3,txpool,debug
+      - --http.vhosts=*
+      - --http.api=eth,net,web3,txpool,debug,engine
       - --ws
       - --ws.addr=0.0.0.0
       - --ws.port=8546
       - --ws.origins=*
-      - --ws.api=eth,net,web3,txpool,debug
+      - --ws.api=eth,net,web3,txpool,debug,engine
       - --syncmode=full
-      - --mine
-      - --miner.etherbase=0x0000000000000000000000000000000000000000
+      - --nodiscover
+      - --authrpc.port=8551
+      - --authrpc.vhosts=*
+      - --authrpc.addr=0.0.0.0
+      - --authrpc.jwtsecret=/root/jwt.hex
     ports:
       - "8545:8545"
       - "8546:8546"
     volumes:
-      - ./packages/geth/data:/root/.ethereum
-      - ./packages/geth/keystore:/root/.ethereum/keystore
+      - ./geth/data:/root/.ethereum
+      - ./geth/keystore:/root/.ethereum/keystore
 
   postgres:
     image: postgres:15-alpine
     container_name: postgres-db
     restart: unless-stopped
     environment:
-      POSTGRES_USER: chainbot
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: chainbot
+      POSTGRES_USER: zenith
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: zenith
     ports:
       - "5432:5432"
     volumes:
       - ./postgres/data:/var/lib/postgresql/data
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zenith -d zenith"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
-  discord-bot:
-    build:
-      context: .
-      dockerfile: apps/bot/Dockerfile
-    container_name: discord-bot
-    restart: unless-stopped
+  # ─── BOT SERVICE ────────────────────────────────────────────────────────────
+  bot:
+    build: .
+    container_name: zenith_bot
+    restart: always
     depends_on:
       - geth
       - postgres
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
       - RPC_URL=http://geth:8545
       - WS_URL=ws://geth:8546
-      - DATABASE_URL=postgres://chainbot:${DB_PASSWORD}@postgres:5432/chainbot
-      - TREASURY_PRIVATE_KEY=${TREASURY_PRIVATE_KEY}
+      - DATABASE_URL=postgresql://zenith:${DATABASE_PASSWORD}@postgres:5432/zenith
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - BOT_WALLET_PRIVATE_KEY=${BOT_WALLET_PRIVATE_KEY}
+      - CHAIN_ID=13371
 
   nginx:
     image: nginx:alpine
@@ -63,17 +74,7 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
-      - "443:443"
     volumes:
-      - ./packages/nginx/chainbot.conf:/etc/nginx/conf.d/default.conf
-      - ./packages/nginx/certs:/etc/nginx/certs
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - geth
-
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    container_name: cloudflared-tunnel
-    restart: unless-stopped
-    command: tunnel run
-    environment:
-      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}

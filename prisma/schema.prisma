@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Wallet {
+  discordId    String   @id @map("discord_id")
+  address      String   @unique
+  encryptedKey String?  @map("encrypted_key")
+  isCustodial  Boolean  @default(true) @map("is_custodial")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("wallets")
+}
+
+model Cooldown {
+  discordId String   @map("discord_id")
+  command   String
+  lastUsed  DateTime @default(now()) @map("last_used")
+
+  @@id([discordId, command])
+  @@map("cooldowns")
+}
+
+model TokenRegistry {
+  symbol    String   @id
+  name      String
+  address   String   @unique
+  creatorId String   @map("creator_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("token_registry")
+}
+
+model PaymentLink {
+  id           String   @id
+  creatorId    String   @map("creator_id")
+  amount       Decimal  @db.Decimal
+  tokenSymbol  String   @map("token_symbol")
+  tokenAddress String?  @map("token_address")
+  reason       String?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("payment_links")
+}

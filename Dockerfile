@@ -1,22 +1,21 @@
 FROM node:20-alpine
 
-# Create app directory
 WORKDIR /app
 
-# Install dependencies first (cache layer)
-COPY package*.json ./
-RUN npm ci --omit=dev
+COPY package.json ./
+RUN npm install --omit=dev
 
-# Copy application source
 COPY . .
 
-# Non-root user for security
-RUN addgroup -S chainbot && adduser -S chainbot -G chainbot
-RUN chown -R chainbot:chainbot /app
-USER chainbot
+# Generate Prisma client
+RUN npx prisma generate
 
-# Health check — verifies the process is still running
+# Set permissions
+RUN addgroup -S zenith && adduser -S zenith -G zenith
+RUN chown -R zenith:zenith /app
+USER zenith
+
 HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
   CMD node -e "process.exit(0)"
 
-CMD ["node", "index.js"]
+CMD ["npm", "run", "start"]

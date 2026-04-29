@@ -2,7 +2,7 @@
 module.exports = {
   apps: [
     {
-      name:          'chainbot',
+      name:          'zenith',
       script:        'index.js',
       instances:     1,           // single instance (Discord bot is stateful)
       exec_mode:     'fork',

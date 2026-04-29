@@ -1,18 +1,33 @@
+# Dependencies
 node_modules/
-dist/
-.next/
-out/
-coverage/
+package-lock.json
+
+# Hardhat
+artifacts/
+cache/
+contracts/artifacts/
+contracts/cache/
+contracts/deployments.json
+contracts/abis/
+
+# Prisma
+/src/generated/prisma
+
+# Environment
 .env
 *.local
-geth/keystore/
-geth/data/
-pnpm-debug.log
+.env.example.local
+
+# Build/Test
+dist/
+coverage/
+*.log
+
+# System
 .DS_Store
-*.tgz
-apps/docs/.next/
-apps/web/.next/
-packages/contracts/artifacts/
-packages/contracts/cache/
-packages/contracts/deployments.json
-packages/contracts/abis/
+Thumbs.db
+
+# Docker/Infrastructure
+geth/data/
+geth/keystore/
+postgres/data/
