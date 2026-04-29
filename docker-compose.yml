@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   geth:
     image: ethereum/client-go:v1.13.14
@@ -24,8 +22,9 @@ services:
       - --authrpc.vhosts=*
       - --authrpc.addr=0.0.0.0
       - --authrpc.jwtsecret=/root/jwt.hex
-      - --miner.gaslimit=500000000
-      - --rpc.gascap=500000000
+      - --miner.gaslimit=1000000000
+      - --miner.gasprice=0
+      - --rpc.gascap=1000000000
       - --rpc.txfeecap=0
     ports:
       - "8545:8545"
