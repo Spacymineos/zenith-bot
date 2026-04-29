@@ -25,6 +25,8 @@ services:
       - --authrpc.addr=0.0.0.0
       - --authrpc.jwtsecret=/root/jwt.hex
       - --miner.gaslimit=500000000
+      - --rpc.gascap=500000000
+      - --rpc.txfeecap=0
     ports:
       - "8545:8545"
       - "8546:8546"
