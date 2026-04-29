@@ -38,7 +38,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     const embed = new EmbedBuilder().setColor(0x635BFF).setTitle('💳 Payment Invoice Request')
       .setDescription(`Requesting **${amount} ${tokenSymbol}** for **${reason}**`)
       .addFields({ name: '💰 Total', value: `**${amount} ${tokenSymbol}**`, inline: true }, { name: '🆔 ID', value: id, inline: true })
-      .setFooter(BRAND_FOOTER);
+      .setFooter({ text: BRAND_FOOTER });
 
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
       new ButtonBuilder().setLabel('🔗 Checkout Link').setStyle(ButtonStyle.Link).setURL(checkoutUrl),
