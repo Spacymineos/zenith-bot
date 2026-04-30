@@ -32,6 +32,7 @@ services:
     volumes:
       - ./geth/data:/root/.ethereum
       - ./geth/keystore:/root/.ethereum/keystore
+      - ./geth/genesis.json:/genesis.json:ro
 
   postgres:
     image: postgres:15-alpine
