@@ -1,3 +1,12 @@
+<div align="center">
+
+![Deprecated](https://img.shields.io/badge/Status-Archived-red?style=for-the-badge&logo=archive&logoColor=yellow)
+
+# 🚨 SPACYMINOS DEPRECATED 🚨
+
+**Project archived. No longer maintained.**
+
+</div>
 # 🌌 Zenith Protocol
 
 The ultimate decentralized economy platform on the Zenith EVM Chain (ID: 13371). A "worth millions" repository designed for scalability, security, and ease of use.
